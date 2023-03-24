@@ -5,20 +5,49 @@ const shadows = Shadows_Into_Light({
   weight: ['400'],
 })
 
+// TODO: put token in .env
+const noaaToken = "oTpqrhNkWQBIbOWgrvJrCUeJdRKIhbac";
+// TODO: replace hardcoded city and year with user inputs
+const city = 'CITY:US060018';
+const year = 2002;
+
 const Temperature = () => {
+  // Step 1: fetch station code using input city
   const fetchTemps = async () => {
     try {
       const res = await fetch(
-        'https://icanhazdadjoke.com/',
+        "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&datatypeid=TMAX&locationid=" +
+        city +
+        "&startdate=" +
+        year +
+        "-01-01&enddate=" +
+        year +
+        "-12-31&limit=1",
           {
-            method: 'GET',
             headers: {
-              Accept: "application/json"
+              token: noaaToken
             },
           }
       );
-      const data = await res.json();
-      console.log(data);
+      const stationData = await res.json();
+      const stationID = stationData.results[0].station;
+      console.log(stationID);
+      const data = await fetch(
+        "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&datacategoryid=TEMP&datatypeid=TMAX&stationid=" +
+        stationID +
+        "&startdate=" +
+        year +
+        "-01-01&enddate=" +
+        year +
+        "-12-31&limit=1000&units=metric",
+          {
+            headers: {
+              token: noaaToken
+            },
+          }
+      );
+      const yearData = await data.json();
+      console.log(yearData.results);  // returns array of day objects with 'date' = date and 'value' = temperature in celcius
     } catch (err) {
         console.error(err);
     }
