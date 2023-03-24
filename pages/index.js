@@ -1,8 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Navbar from '@/components/Navbar'
+import Temperature from './temperature'
+import Palette from './palette'
+import { Shadows_Into_Light } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const shadows = Shadows_Into_Light({ 
+  subsets: ['latin'],
+  weight: ['400'],
+})
 
 export default function Home() {
   return (
@@ -14,9 +20,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-      <h1 className="text-3xl font-bold text-cyan-400 underline">
-        Hello world!
-      </h1>
+        <Navbar />
+        <section className='pt-20 min-h-screen'>
+          <div className={shadows.className}>
+            <h1 className="text-3xl font-bold text-cyan-400">
+              Create Your Historical Temperature Visualization
+            </h1>
+          </div>
+          <div className='p-4 flex flex-col'>
+            <p className='py-1'>
+              Weather you crochet, knit, embroider, or cross-stitch, find all the temeperatures for a specific city and year, then use the color palette generator to plan out your beautiful and unique visualization.
+            </p>
+            <p className='py-1'>
+              Want to use a medium other than fiber? Do it. The sky&apos;s the limit!
+            </p>
+          </div>
+        </section>
+        <section id="temperature">
+          <Temperature />
+        </section>
+        <section id="palette">
+          <Palette />
+        </section>
       </main>
     </>
   )
