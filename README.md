@@ -4,6 +4,8 @@
 ## Description
 A website for crafty users to get historical temperature data for a US city. This app fetches data from the NOAA Climate Data Online API and displays it in simple table form.
 
+Deployed https://temperature-ivory.vercel.app/
+
 ### desktop
 <img src="https://github.com/shelleymcq/temperature/blob/main/images/desktop.png" width=80%>
 
