@@ -17,14 +17,15 @@ const columns = [
     key: 'date',
     width: 250,
     align: 'center',
-    className: 'bg-slate-400' // add all my tailwind classes here
+    className: 'bg-slate-400 pt-1', // add all my tailwind classes here
   },
   {
     title: 'Temperature in C',
     dataIndex: 'value',
     key: 'value',
-    width: 200,
+    width: 250,
     align: 'center',
+    className: 'bg-slate-400',
   }
 ]
 
@@ -103,12 +104,12 @@ const Temperature = () => {
   }
 
   return (
-    <div className='bg-blue-300 flex flex-col items-center pt-20 min-h-screen'>
+    <div className='bg-slate-300 flex flex-col items-center pt-20 min-h-screen'>
       <div className={shadows.className}>
-        <h2 className='text-2xl font-bold text-cyan-600'>Temperature by Year</h2>
+        <h2 className='text-2xl font-bold text-sky-800 pt-4'>Temperature by Year</h2>
       </div>
 
-      <form onSubmit={fetchTemps} className='search flex flex-row'>
+      <form onSubmit={fetchTemps} className='search py-4 text-slate-700'>
         <div>
           <label>
             City
@@ -119,15 +120,16 @@ const Temperature = () => {
         <div>
           <label>
             Year
-            <input type="text" onChange={handleYearChange} value={year} className="w-20 h-6 m-3" />
+            <input type="text" onChange={handleYearChange} value={year} className="w-16 h-6 m-2" />
           </label>
         </div>
         <div>
-          <button className="h-6 px-4 m-3 text-xs bg-slate-500 rounded-full hover:bg-slate-400">Search</button>
+          <button className="h-6 px-4 m-3 text-slate-200 bg-sky-900 rounded-full hover:bg-sky-800">Search</button>
         </div>
       </form>
-      
-      <div>
+      <p className='text-sm text-slate-700 pl-1'>Data provided by the National Oceanic and Atmospheric Administration Climate Data API.</p>
+      <p className='text-xs text-slate-500 pb-4 pl-1'>Please note that it may take a few moments for the table to update.</p>
+      <div className='p-4 text-xs text-slate-800 md:text-base lg:text:lg'>
         <Table columns={columns} data={temperatures} />
       </div>
     </div>

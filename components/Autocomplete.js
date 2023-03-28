@@ -83,7 +83,7 @@ const Autocomplete = ({ suggestions, getCityFromChild }) => {
         <>
           <input 
             type='text'
-            className='w-50 h-6 m-3'
+            className='w-45 h-6 m-2'
             onChange={onChange}
             onKeyDown={onKeyDown}
             value={input}
