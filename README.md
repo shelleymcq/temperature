@@ -4,6 +4,15 @@
 ## Description
 A website for crafty users to get historical temperature data for a US city. This app fetches data from the NOAA Climate Data Online API and displays it in simple table form.
 
+### desktop
+<img src="https://github.com/shelleymcq/temperature/blob/main/images/desktop.png" width=80%>
+
+### autocomplete US city name
+<img src="https://github.com/shelleymcq/temperature/blob/main/images/autocomplete.png" width=30%>
+
+### temperature data
+<img src="https://github.com/shelleymcq/temperature/blob/main/images/data.png" width=50%>
+
 ### Next Steps
 * Make data downloadable in csv or pdf format.
 * Make date pretty and convert celcius to fahrenheit
