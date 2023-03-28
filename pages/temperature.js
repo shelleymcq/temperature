@@ -112,7 +112,7 @@ const Temperature = () => {
       <form onSubmit={fetchTemps} className='search py-4 text-slate-700'>
         <div>
           <label>
-            City
+            US City
             <Autocomplete
               suggestions={cities} getCityFromChild={getCityFromChild}/>
           </label>
