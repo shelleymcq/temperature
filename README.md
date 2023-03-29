@@ -19,6 +19,7 @@ Deployed https://temperature-ivory.vercel.app/
 * Make data downloadable in csv or pdf format.
 * Make date pretty and convert celcius to fahrenheit
 * Allow user to select temperature units.
+* Allow user to enter specific date range, not just Jan 1st to Dec 31st.
 * Add more countries (currently US only).
 * Create a palette planner so that users can select colors based on their data and see a mockup of their project.
 
