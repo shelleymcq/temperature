@@ -90,22 +90,19 @@ const ColorPicker = () => {
         <div className="flex mt-5">
           <div className="container m-auto grid">
             {tempRange.map((item) => (
-              <div>
-                <p key={item.id} className="w-30 m-1">
-                  {item.value}
-                </p>
+              <div key={item.id}>
+                <p className="w-30 m-1">{item.value}</p>
               </div>
             ))}
           </div>
           <div className="container m-auto grid">
             {savedColors.map((item) => (
-              <div>
+              <div key={item.id}>
                 <p
                   style={{
                     backgroundColor: `${item.hex}`,
                     color: `${item.hex}`,
                   }}
-                  key={item.id}
                   className="w-30 m-1"
                   onClick={() => handleSave(item.id, color)}
                 >
