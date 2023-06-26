@@ -23,7 +23,7 @@ const Palette = () => {
         specific temperature range by clicking on a box to the right.
       </p>
       <p>
-        In the future, you will be able to imput temperature ranges of you
+        In the future, you will be able to imput temperature ranges of your
         choice.
       </p>
       <ColorPicker />
