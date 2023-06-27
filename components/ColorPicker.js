@@ -73,29 +73,97 @@ const ColorPicker = () => {
   };
 
   return (
-    <div className="mt-10 md:flex">
-      <HexColorPicker color={color} onChange={setColor} />
-      <div className="p-10 w-40">
-        <h3>Current Color</h3>
-        <p style={{ backgroundColor: `${color}`, color: `${color}` }}>
-          {color}
-        </p>
+    <div className="mt-10 md:flex md:justify-around">
+      <div>
+        <HexColorPicker color={color} onChange={setColor} />
+        <div className="p-10 flex flex-row">
+          <h3 className="text-sm mr-2">Current Color</h3>
+          <p style={{ backgroundColor: `${color}`, color: `${color}` }}>
+            {color}
+          </p>
+        </div>
       </div>
       <div>
-        <h3>Saved Colors</h3>
-        <div className="flex">
-          <p className="text-xs w-20">temperature range</p>
-          <p className="text-xs w-20">click in box to save current color</p>
-        </div>
-        <div className="flex mt-5">
+        <div className="flex mt-1">
           <div className="container m-auto grid">
-            {tempRange.map((item) => (
-              <div key={item.id}>
-                <p className="w-30 m-1">{item.value}</p>
-              </div>
-            ))}
+            <p className="text-center text-xs w-20 h-16 m-1">
+              click to enter custom temperature range
+            </p>
+            <div>
+              <input
+                type="text"
+                placeholder="0 - 9"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="10 - 19"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="20 - 29"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="30 - 39"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="40 - 49"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="50 - 59"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="60 - 69"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="70 - 79"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="80 - 89"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="90 +"
+                className="w-20 m-1 placeholder-slate-400 text-slate-600 text-center relative bg-white rounded border-0 shadow outline-none focus:outline-none focus:ring"
+              />
+            </div>
           </div>
           <div className="container m-auto grid">
+            <p className="text-center text-xs w-20 h-16 m-1">
+              click in box to save current color
+            </p>
             {savedColors.map((item) => (
               <div key={item.id}>
                 <p
@@ -103,7 +171,7 @@ const ColorPicker = () => {
                     backgroundColor: `${item.hex}`,
                     color: `${item.hex}`,
                   }}
-                  className="w-30 m-1"
+                  className="w-20 ml-3 m-1 cursor-pointer"
                   onClick={() => handleSave(item.id, color)}
                 >
                   {item.hex}

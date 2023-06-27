@@ -17,15 +17,11 @@ const Palette = () => {
       <p>
         <FaHardHat />
       </p>
-      <p>
+      <p className="py-2">
         You can pick colors from the color selector on the left by dragging one
-        of the circles to any color you like and then save that color to a
-        specific temperature range by clicking on a box to the right.
+        of the circles to any color you like.
       </p>
-      <p>
-        In the future, you will be able to imput temperature ranges of your
-        choice.
-      </p>
+      <p>You can customize your palette to the right.</p>
       <ColorPicker />
     </div>
   );
