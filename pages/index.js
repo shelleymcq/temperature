@@ -1,17 +1,17 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Temperature from './temperature'
-import Palette from './palette'
-import { Shadows_Into_Light } from 'next/font/google'
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Temperature from "./temperature";
+import Palette from "./palette";
+import { Shadows_Into_Light } from "next/font/google";
 
-import planning from '../public/assets/planning.png'
+import planning from "../public/assets/planning.png";
 
-const shadows = Shadows_Into_Light({ 
-  subsets: ['latin'],
-  weight: ['400'],
-})
+const shadows = Shadows_Into_Light({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default function Home() {
   return (
@@ -25,25 +25,37 @@ export default function Home() {
       <main>
         <Navbar />
 
-        <section className='flex flex-col lg:flex-row pt-20 px-5 bg-slate-100 min-h-screen'>
+        <section className="flex flex-col lg:flex-row pt-20 px-5 bg-slate-100 min-h-screen">
           <div>
             <div className={shadows.className}>
               <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-violet-600 pt-2">
                 Create Your Historical Temperature Blanket, Scarf, Snake, . . .
               </h1>
             </div>
-            <div className='p-2 md:p-4 flex flex-col text-slate-600 text-sm md:text-lg'>
-              <p className='py-1'>
-                Weather you crochet, knit, embroider, or cross-stitch, find all the temeperatures for a specific city and year, then use the color palette generator to plan out your beautiful and unique visualization.
+            <div className="p-2 md:p-4 flex flex-col text-slate-600 text-sm md:text-lg">
+              <p className="py-1">
+                Weather you crochet, knit, embroider, or cross-stitch, find all
+                the temeperatures for a specific city and year, then use the
+                color palette generator to plan out your beautiful and unique
+                visualization.
               </p>
-              <p className='py-1'>
-                Want to use a medium other than fiber? Do it. The sky&apos;s the limit!
+              <p className="py-1">
+                Want to use a medium other than fiber? Do it. The sky&apos;s the
+                limit!
+              </p>
+              <p className="py-1">
+                I&apos;d love to see what you make. Please tag me on Bluesky
+                @shelleymcq.bsky.social or Twitter @shelleymcqDev.
               </p>
             </div>
-            <Link href='#temperature'><p className='bg-violet-600 text-slate-200 text-base md:text-xl p-1 md:p-2 m-1 md:m-2 rounded-md text-center'>Get Started</p></Link>
+            <Link href="#temperature">
+              <p className="bg-violet-600 text-slate-200 text-base md:text-xl p-1 md:p-2 m-1 md:m-2 rounded-md text-center">
+                Get Started
+              </p>
+            </Link>
           </div>
-          <div className='p-1 md:p-5'>
-            <Image src={planning} alt='yarn and equipment at the ready'/>
+          <div className="p-1 md:p-5">
+            <Image src={planning} alt="yarn and equipment at the ready" />
           </div>
         </section>
 
@@ -55,5 +67,5 @@ export default function Home() {
         </section>
       </main>
     </>
-  )
+  );
 }
