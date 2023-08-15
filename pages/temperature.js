@@ -4,6 +4,7 @@ import Table from "rc-table";
 import Autocomplete from "@/components/Autocomplete";
 import cities from "../data/Cities";
 import cityIDs from "../data/CityIDs";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const shadows = Shadows_Into_Light({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ const Temperature = () => {
   const [city, setCity] = useState("");
   const [year, setYear] = useState("");
   const [cityID, setCityID] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const getCityFromChild = (input) => {
     setCity(input);
@@ -64,6 +66,7 @@ const Temperature = () => {
 
   const fetchTemps = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
       const res = await fetch(
         "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&datatypeid=TMAX&locationid=" +
@@ -99,13 +102,14 @@ const Temperature = () => {
       const yearData = await data.json();
       const tableData = yearData.results; // array of day objects with 'date' = date and 'value' = temperature in celcius
       setTemperatures(tableData);
+      setIsLoading(false);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div className="bg-slate-300 flex flex-col items-center pt-20 min-h-screen">
+    <div className="bg-slate-200 flex flex-col items-center pt-20 min-h-screen">
       <div className={shadows.className}>
         <h2 className="text-2xl font-bold text-sky-800 pt-4">
           Temperature by Year
@@ -149,6 +153,7 @@ const Temperature = () => {
       <div className="p-4 text-xs text-slate-800 md:text-base lg:text:lg">
         <Table columns={columns} data={temperatures} />
       </div>
+      {isLoading ? <LoadingSpinner /> : null}
     </div>
   );
 };
