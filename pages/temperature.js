@@ -5,6 +5,7 @@ import Autocomplete from "@/components/Autocomplete";
 import cities from "../data/Cities";
 import cityIDs from "../data/CityIDs";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import ErrorMessage from "@/components/ErrorMessage";
 
 const shadows = Shadows_Into_Light({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ const Temperature = () => {
   const [year, setYear] = useState("");
   const [cityID, setCityID] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [errorLoading, setErrorLoading] = useState(false);
 
   const getCityFromChild = (input) => {
     setCity(input);
@@ -104,6 +106,8 @@ const Temperature = () => {
       setTemperatures(tableData);
       setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
+      setErrorLoading(true);
       console.error(err);
     }
   };
@@ -154,6 +158,7 @@ const Temperature = () => {
         <Table columns={columns} data={temperatures} />
       </div>
       {isLoading ? <LoadingSpinner /> : null}
+      {errorLoading ? <ErrorMessage /> : null}
     </div>
   );
 };
