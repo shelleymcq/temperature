@@ -7,6 +7,8 @@ import cityIDs from "../data/CityIDs";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorMessage from "@/components/ErrorMessage";
 
+import { CSVLink, CSVDownload } from "react-csv";
+
 const shadows = Shadows_Into_Light({
   subsets: ["latin"],
   weight: ["400"],
@@ -47,6 +49,7 @@ const Temperature = () => {
   const [cityID, setCityID] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorLoading, setErrorLoading] = useState(false);
+  const [downloadAvailable, setDownloadAvailable] = useState(false);
 
   const getCityFromChild = (input) => {
     setCity(input);
@@ -102,8 +105,13 @@ const Temperature = () => {
         }
       );
       const yearData = await data.json();
-      const tableData = yearData.results; // array of day objects with 'date' = date and 'value' = temperature in celcius
-      setTemperatures(tableData);
+      const tableData = yearData.results;
+      const temperatureData = tableData.map(({ date, value }) => ({
+        date,
+        value,
+      })); // array of day objects with just 'date' = date and 'value' = temperature in celcius
+      setTemperatures(temperatureData);
+      setDownloadAvailable(true);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -142,7 +150,10 @@ const Temperature = () => {
           </label>
         </div>
         <div>
-          <button className="h-6 px-4 m-3 text-slate-200 bg-sky-900 rounded-full hover:bg-sky-800">
+          <button
+            onClick={(e) => setDownloadAvailable(false)}
+            className="h-6 px-4 m-3 text-slate-200 bg-sky-900 rounded-full hover:bg-sky-800"
+          >
             Search
           </button>
         </div>
@@ -154,6 +165,16 @@ const Temperature = () => {
       <p className="text-xs text-slate-500 pb-4 pl-1">
         Please note that it may take a few moments for the table to update.
       </p>
+      {downloadAvailable ? (
+        <CSVLink
+          data={temperatures}
+          filename={"temperatures.csv"}
+          className="h-6 px-4 m-3 text-slate-200 bg-sky-900 rounded-md hover:bg-sky-800"
+        >
+          Download Temperatures as a CSV file
+        </CSVLink>
+      ) : null}
+
       <div className="p-4 text-xs text-slate-800 md:text-base lg:text:lg">
         <Table columns={columns} data={temperatures} />
       </div>
