@@ -24,7 +24,7 @@ const columns = [
     className: "bg-slate-400 pt-1", // add all my tailwind classes here
   },
   {
-    title: "Temperature in C",
+    title: "High Temperature in F",
     dataIndex: "value",
     key: "value",
     width: 250,
@@ -41,6 +41,11 @@ const initialData = [
     value: "",
   },
 ];
+
+const celciusToFahrenheit = (celcius) => {
+  const fahrenheit = ((celcius * 9) / 5 + 32).toFixed(1);
+  return fahrenheit;
+};
 
 const Temperature = () => {
   const [temperatures, setTemperatures] = useState(initialData);
@@ -72,6 +77,7 @@ const Temperature = () => {
   const fetchTemps = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+    setTemperatures(initialData);
     try {
       const res = await fetch(
         "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&datatypeid=TMAX&locationid=" +
@@ -105,11 +111,15 @@ const Temperature = () => {
         }
       );
       const yearData = await data.json();
-      const tableData = yearData.results;
-      const temperatureData = tableData.map(({ date, value }) => ({
+      const tableData = await yearData.results;
+      const convertedTemps = await tableData.map((item) => {
+        return { ...item, value: celciusToFahrenheit(item.value) };
+      });
+      const temperatureData = convertedTemps.map(({ date, value }) => ({
         date,
         value,
-      })); // array of day objects with just 'date' = date and 'value' = temperature in celcius
+      }));
+
       setTemperatures(temperatureData);
       setDownloadAvailable(true);
       setIsLoading(false);
